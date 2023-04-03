@@ -1,0 +1,159 @@
+html {
+    font-size: 10px;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    margin: 0;
+}
+
+/* Container */
+.shows {
+    display: flex;
+    overflow-x: auto;
+    padding-top: 1rem;
+    scroll-behavior: smooth;
+}
+.category {
+    position: relative;
+}
+
+/* Arrows */
+.category[scroll-left="false"] .arrow-left {
+    display: none;
+}
+.category[scroll-right="false"] .arrow-right {
+    display: none;
+}
+.category .arrow {
+    position: absolute;
+    top: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #fff;
+    height: 20rem;
+    width: 5rem;
+    z-index: 2;
+    cursor: pointer;
+}
+.category .arrow-right {
+    background: linear-gradient(270deg, rgba(0,0,0, .5), transparent);
+    right: 0;
+
+}
+.category .arrow-left {
+    background: linear-gradient(90deg, rgba(0,0,0, .5), transparent);
+    left: 0;
+}
+
+/* Header */
+.category h2 {
+    font-size: 3rem;
+    margin: 3rem 0rem 0rem 2rem;
+    color: rgb(0, 20, 30);
+}
+
+
+/* Showcard */
+.showcard {
+    aspect-ratio: 16 / 9;
+    height: 20rem;
+    margin: 1rem 1rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 .5rem 1rem;
+    transition: .2s ease-in;
+    overflow: hidden;
+}
+.showcard:hover {
+    transform: translate(0px, -.7rem) scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 .7rem 1rem;
+    filter: grayscale(70%);
+}
+.showcard:hover::before {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 14rem;
+    padding-left: 0.5rem;
+    color: #fff;
+    background: linear-gradient(0deg, black, rgba(0,0,0,.8), transparent);
+    text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, 0.2);
+    font-size: 2.5rem;
+}
+.showcard:hover::after {
+    content: attr(data-description);
+    position: absolute;
+    bottom: 1rem;
+    left: .5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    height: 5.5rem;
+    overflow: hidden;
+}
+
+.showcard > img {
+    width: 100%;
+    overflow: hidden;
+    object-fit: contain;
+}
+
+
+/* Video */
+#video-container[init="false"] {
+    height: 0 !important;
+    overflow: hidden;
+}
+#video-container {
+    height: 80vh;
+    transition: .5s ease-in-out;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+}
+@media screen and (max-width: 480px) {
+    #video-container {
+        height: 35vh;
+    }
+    #video {
+        width: 100%;
+    }
+}
+
+#video {
+    height: 90%;
+}
+#video-title {
+    width: 100%;
+    padding-left: 5rem;
+    color: #fff;
+}
+
+/* Ads */
+#video-container[init="false"] #ad-container {
+    height: 0;
+}
+#ad-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+/* Theme */
+.vjs-theme-fantasy {
+    --vjs-theme-fantasy--primary: rgb(235, 50, 35);
+    --vjs-theme-fantasy--secondary: #fff;
+  }

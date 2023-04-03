@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ad Player HTML5</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://unpkg.com/video.js@7/dist/video-js.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="video-container" class="" init="false">
+        <video
+          id="video"
+          class="video-js vjs-theme-fantasy"
+          controls
+          data-setup="{}"
+        ></video>
+        <div id="ad-container"></div>
+        <h1 id="video-title"></h1>
+      </div>
+      <div id="content"></div>
+    </div>
+
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+
+    <script src="scripts/ads.js"></script>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="scripts/index.js"></script>
+  </body>
+</html>
