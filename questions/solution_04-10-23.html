@@ -1,0 +1,89 @@
+<div id="first">Hello world!</div>
+<div id="second">I'm second div!!!</div>
+<style>
+  #first {
+    position: absolute;
+    top: 5px;
+  }
+  #second {
+    position: absolute;
+    top: 100px;
+  }
+</style>
+<script>
+    // question 1
+    // create a map from attributes with prefix "data-dvp_<some-string>"
+    // with a structure: { [key: <some-string>]: attr_data }
+    var map = Object.fromEntries(
+    [...el.attributes]
+      .filter((attr) => attr.name.startsWith("data-dvp_"))
+      .map((attr) => [attr.name.replace("data-dvp_", ""), attr])
+  );
+
+  // question 2
+  // write a function that return true if 2 elements overlap
+
+  const element1 = document.querySelector("#first");
+  const element2 = document.querySelector("#second");
+  function overlapping(element1, element2) {
+    const dimentions1 = element1.getBoundingClientRect();
+    const dimentions2 = element2.getBoundingClientRect();
+    const notOverlappingVertically =
+      dimentions1.top >= dimentions2.bottom ||
+      dimentions2.top >= dimentions1.bottom;
+    const notOverlappingHorizontally =
+      dimentions1.left >= dimentions2.right ||
+      dimentions2.left >= dimentions1.right;
+    if (notOverlappingVertically || notOverlappingHorizontally) {
+      return false;
+    }
+    return true;
+  }
+  window.overlapping = overlapping;
+</script>
+
+<script>
+  /**
+     Write a function to find the longest common prefix string amongst an array of strings.
+        If there is no common prefix, return an empty string "".
+    Example 1:
+
+    Input: strs = ["flower","flow","flight"]
+    Output: "fl"
+    Example 2:
+
+    Input: strs = ["dog","racecar","car"]
+    Output: ""
+    Explanation: There is no common prefix among the input strings.
+     */
+  function getCommonPrefix(strings) {
+    if (!strings.length) return "";
+    const trie = {};
+    // init
+    let branch = trie;
+    for (const char of strings[0]) {
+      branch[char] = {};
+      branch = branch[char];
+    }
+    let depth = strings[0].length;
+
+    // main logic
+    for (const str of strings) {
+      let branch = trie;
+      let counter = 0;
+      for (const char of str) {
+        if (!branch.hasOwnProperty(char)) {
+          depth = Math.min(depth, counter);
+          break;
+        }
+        branch = branch[char];
+        counter++;
+        if (counter > depth) {
+          break;
+        }
+      }
+    }
+    return strings[0].substring(0, depth);
+  }
+  window.getCommonPrefix = getCommonPrefix;
+</script>
